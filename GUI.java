@@ -15,7 +15,7 @@ public class GUI extends Frame{
         topPanel.add(ipInput);
         Button connectButton = new Button("Połącz");
         topPanel.add(connectButton);
-        Label statusLabel = new Label("Połączono z peerem: XXX.XXX.XXX.XXX");
+        Label statusLabel = new Label("Niepołączono");
         topPanel.add(statusLabel);
 
         add(topPanel, "North");
