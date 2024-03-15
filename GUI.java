@@ -17,7 +17,6 @@ public class GUI extends Frame{
         topPanel.add(connectButton);
         Label statusLabel = new Label("Niepołączono");
         topPanel.add(statusLabel);
-
         add(topPanel, "North");
 
         // Center panel
@@ -34,7 +33,6 @@ public class GUI extends Frame{
         bottomPanel.add(messageField);
         Button sendButton = new Button("Wyślij");
         bottomPanel.add(sendButton);
-
         add(bottomPanel, "South");
 
 
