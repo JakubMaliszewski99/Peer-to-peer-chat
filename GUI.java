@@ -35,7 +35,6 @@ public class GUI extends Frame{
         bottomPanel.add(sendButton);
         add(bottomPanel, "South");
 
-
         setSize(600, 500);
         setResizable(false);
         setVisible(true);
