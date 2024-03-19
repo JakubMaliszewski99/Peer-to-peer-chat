@@ -1,9 +1,59 @@
 import java.awt.*;
+import java.awt.event.*;
 
 public class GUI extends Frame{
     public GUI(){
         setLayout(new BorderLayout());
         setTitle("Peer-to-peer czat");
+
+        createMenu();
+
+        setSize(600, 500);
+        setResizable(false);
+        setVisible(true);
+    }
+
+    private void createMenu(){
+        // Menu
+        MenuBar mb = new MenuBar();
+        setMenuBar(mb);
+        Menu prog = new Menu("Program");
+        mb.add(prog);
+        MenuItem connect = new MenuItem("Połącz",
+                                        new MenuShortcut(KeyEvent.VK_C));
+        prog.add(connect);
+        MenuItem disconnect = new MenuItem("Rozłącz",
+                                        new MenuShortcut(KeyEvent.VK_D));
+        prog.add(disconnect);
+        MenuItem send = new MenuItem("Wyślij",
+                                        new MenuShortcut(KeyEvent.VK_W));
+        prog.add(send);
+        prog.add(new MenuItem("-"));
+
+        //Zamknij program z menu
+        MenuItem quit = new MenuItem("Zamknij", 
+                                        new MenuShortcut(KeyEvent.VK_X));
+        prog.add(quit);
+        quit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event){
+                System.exit(0);
+            }
+        });
+
+        Menu history = new Menu("Historia czatów");
+        mb.add(history);
+        MenuItem open = new MenuItem("Otwórz historię czatu",
+                new MenuShortcut(KeyEvent.VK_O));
+        history.add(open);
+        MenuItem save = new MenuItem("Zapisz historię czatu",
+                new MenuShortcut(KeyEvent.VK_S));
+        history.add(save);
+        
+        Menu help = new Menu("Pomoc");
+        mb.setHelpMenu(help);
+        MenuItem doc = new MenuItem("Dokumentacja",
+                new MenuShortcut(KeyEvent.VK_H));
+        help.add(doc);
 
         // Top panel
         Panel topPanel = new Panel();
@@ -27,16 +77,12 @@ public class GUI extends Frame{
         // Bottom panel
         Panel bottomPanel = new Panel();
         bottomPanel.setLayout(new FlowLayout());
-        TextField messageField = new TextField("Tutaj wpisz wiadomość...                              ");
-        messageField.setSize(50, 400);
-        messageField.setEditable(true);
-        bottomPanel.add(messageField);
+        TextArea messageArea = new TextArea("Tutaj wpisz wiadomość...", 8, 60);
+        messageArea.setEditable(true);
+        bottomPanel.add(messageArea);
         Button sendButton = new Button("Wyślij");
         bottomPanel.add(sendButton);
         add(bottomPanel, "South");
 
-        setSize(600, 500);
-        setResizable(false);
-        setVisible(true);
     }
 }
