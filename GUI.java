@@ -5,6 +5,7 @@ public class GUI extends Frame{
     public GUI(){
         setLayout(new BorderLayout());
         setTitle("Peer-to-peer czat");
+        addWindowListener(windowHandler);
 
         createMenu();
 
@@ -17,29 +18,28 @@ public class GUI extends Frame{
         // Menu
         MenuBar mb = new MenuBar();
         setMenuBar(mb);
+
+        // Zakładka Program
         Menu prog = new Menu("Program");
         mb.add(prog);
-        MenuItem connect = new MenuItem("Połącz",
-                                        new MenuShortcut(KeyEvent.VK_C));
+        MenuItem connect = new MenuItem("Połącz", new MenuShortcut(KeyEvent.VK_C));
+        connect.addActionListener(actionHandler);
         prog.add(connect);
-        MenuItem disconnect = new MenuItem("Rozłącz",
-                                        new MenuShortcut(KeyEvent.VK_D));
+        MenuItem disconnect = new MenuItem("Rozłącz", new MenuShortcut(KeyEvent.VK_D));
         prog.add(disconnect);
-        MenuItem send = new MenuItem("Wyślij",
-                                        new MenuShortcut(KeyEvent.VK_W));
+        disconnect.addActionListener(actionHandler);
+        MenuItem send = new MenuItem("Wyślij", new MenuShortcut(KeyEvent.VK_W));
+        send.addActionListener(actionHandler);
         prog.add(send);
+        // Separator
         prog.add(new MenuItem("-"));
-
-        //Zamknij program z menu
+        // Zamknij program z menu
         MenuItem quit = new MenuItem("Zamknij", 
                                         new MenuShortcut(KeyEvent.VK_X));
         prog.add(quit);
-        quit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event){
-                System.exit(0);
-            }
-        });
+        quit.addActionListener(actionHandler);
 
+        // Historia czatów
         Menu history = new Menu("Historia czatów");
         mb.add(history);
         MenuItem open = new MenuItem("Otwórz historię czatu",
@@ -83,6 +83,8 @@ public class GUI extends Frame{
         Button sendButton = new Button("Wyślij");
         bottomPanel.add(sendButton);
         add(bottomPanel, "South");
-
     }
+
+    private WindowHandler windowHandler = new WindowHandler();
+    private ActionHandler actionHandler = new ActionHandler();
 }
