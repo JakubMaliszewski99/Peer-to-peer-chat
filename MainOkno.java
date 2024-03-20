@@ -1,8 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 
-public class GUI extends Frame{
-    public GUI(){
+public class MainOkno extends Frame{
+    public MainOkno(){
         setLayout(new BorderLayout());
         setTitle("Peer-to-peer czat");
         addWindowListener(windowHandler);
